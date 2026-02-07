@@ -1,0 +1,4 @@
+node_modules/
+data/analytics.ndjson
+.DS_Store
+*.log

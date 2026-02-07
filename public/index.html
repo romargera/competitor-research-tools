@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing PDF Capture</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="panel">
+        <h1>Pricing Page Screenshot PDF</h1>
+        <p class="muted">Web-only self-hosted сервис. До 10 уникальных доменов на запуск. Дедупликация включена.</p>
+
+        <form id="run-form">
+          <label>
+            User ID
+            <input id="user-id" name="user_id" required maxlength="128" placeholder="user_123" />
+          </label>
+
+          <label>
+            Домены через запятую
+            <textarea
+              id="domains"
+              name="domains"
+              rows="4"
+              placeholder="stripe.com, notion.so, figma.com"
+              required
+            ></textarea>
+          </label>
+
+          <div class="actions">
+            <button type="submit" id="run-btn">Запустить</button>
+            <button type="button" id="sample-btn" class="secondary">Подставить пример</button>
+          </div>
+        </form>
+
+        <div id="run-message" class="message"></div>
+
+        <div id="progress" class="progress hidden">
+          <div class="progress-row">
+            <strong>Статус:</strong>
+            <span id="progress-status">-</span>
+          </div>
+          <div class="progress-row">
+            <strong>Прогресс:</strong>
+            <span id="progress-count">0/0</span>
+          </div>
+          <div class="progress-row">
+            <strong>Текущий домен:</strong>
+            <span id="progress-domain">-</span>
+          </div>
+          <div class="progress-bar"><div id="progress-fill"></div></div>
+          <button id="download-btn" class="hidden">Скачать PDF</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="results-table" class="hidden">
+            <thead>
+              <tr>
+                <th>Домен</th>
+                <th>Статус</th>
+                <th>Код</th>
+                <th>URL</th>
+                <th>Fallback</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Аналитика</h2>
+        <div class="analytics-controls">
+          <input id="analytics-user-id" placeholder="Фильтр по user_id (опционально)" />
+          <button id="analytics-refresh">Обновить</button>
+        </div>
+
+        <div id="analytics-summary" class="kv"></div>
+
+        <div class="table-wrap">
+          <table id="runs-table">
+            <thead>
+              <tr>
+                <th>run_id</th>
+                <th>user_id</th>
+                <th>domains_count</th>
+                <th>pdf_status</th>
+                <th>completed_at</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

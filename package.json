@@ -1,0 +1,20 @@
+{
+  "name": "pricing-page-pdf-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web-only self-hosted service to capture pricing page screenshots and generate PDF reports",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pdfkit": "^0.16.0",
+    "playwright": "^1.50.1",
+    "uuid": "^11.1.0"
+  }
+}
