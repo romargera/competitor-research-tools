@@ -366,3 +366,74 @@
 
 ### Open Questions
 - Нет открытых вопросов для v1.
+
+## 5. Competitive Landscape
+
+### 5.1 Klue
+**URL:** https://klue.com/
+
+**Описание:**  
+Платформа конкурентной разведки и Win-Loss анализа для B2B-компаний. Объединяет сбор competitive intelligence и программы анализа побед/поражений в одном месте.
+
+**Ключевые возможности:**
+- **Compete Agent** — AI-агент для автоматической доставки competitive insights продавцам прямо в CRM/Slack
+- **Win-Loss анализ** — глубинные интервью с покупателями для выявления причин побед и поражений
+- **Battlecards** — автоматически обновляемые карточки для продаж
+- **Deal-based insights** — персонализированные рекомендации для каждой сделки
+- **Интеграции** — Salesforce, HubSpot, Slack, Microsoft Teams
+
+**Метрики (по данным кейсов):**
+- 250,000+ пользователей
+- +28% win-rate против топ-конкурентов (кейс Blackbaud)
+- 10+ часов экономии в неделю на CI-задачи
+- 72% adoption среди продавцов
+
+**Pricing:**  
+Не публикуется. Enterprise-модель с demo по запросу.
+
+**Позиционирование:**  
+G2 лидер в 4 категориях. Фокус на крупные B2B sales teams.
+
+---
+
+### 5.2 Kompyte (Semrush)
+**URL:** https://www.kompyte.com/
+
+**Описание:**  
+Платформа автоматизированной конкурентной разведки от Semrush. Отслеживает действия конкурентов в реальном времени и доставляет actionable insights.
+
+**Ключевые возможности:**
+- **Real-time мониторинг** — автоматическое отслеживание сайтов, контента, соцсетей, рекламы, вакансий конкурентов
+- **AI-powered insights** — ML-фильтрация шума, автоматические ежедневные саммари
+- **Battlecards** — ready-to-use шаблоны для sales enablement
+- **Website change detection** — уведомления об изменениях на сайтах конкурентов
+- **SEO/PPC tracking** — анализ ключевых слов и рекламных кампаний конкурентов
+- **Интеграции** — Salesforce, HubSpot, Slack, Microsoft Teams
+
+**Tracking capabilities:**
+- Изменения на сайтах
+- Контент-мониторинг
+- Social media
+- Изменения цен
+- Product updates
+- Email-кампании
+- Share of voice
+- Sentiment analysis
+
+**Pricing:**  
+Subscription-based, custom pricing. Планы: Essentials, Professional, Unlimited. Зависит от количества лицензий и объёма сканирований. Enterprise-уровень. Пользователи Semrush могут получить скидку. Бесплатной версии нет, доступен trial.
+
+**Позиционирование:**  
+Часть экосистемы Semrush. Автоматизация CI для маркетинговых и sales команд.
+
+---
+
+### 5.3 Наше отличие
+| Аспект | Klue/Kompyte | Наш сервис |
+|--------|--------------|------------|
+| Фокус | Полноценный CI + Win-Loss + Battlecards | Быстрый визуальный срез pricing-страниц |
+| Сложность | Тяжёлые enterprise-платформы | Lightweight self-hosted сервис |
+| Pricing | Enterprise (demo по запросу) | Self-hosted, бесплатно |
+| Интеграции | CRM, Slack, BI | Standalone PDF export |
+| Use case | Ongoing CI program | Разовый competitive snapshot |
+| Time-to-value | Недели на onboarding | Минуты |
