@@ -97,12 +97,10 @@ async function captureVariant(browser, url, variant) {
     if (blocked) throw new CaptureError("BLOCKED", "Обнаружены признаки anti-bot/captcha");
 
     const viewportScreenshot = await page.screenshot({ type: "png", fullPage: false });
-    const fullScreenshot = await page.screenshot({ type: "png", fullPage: true });
 
     return {
       resolvedUrl: page.url(),
       viewportScreenshot,
-      fullScreenshot,
       statusCode: status,
       pageTitle: await page.title(),
     };
@@ -136,9 +134,7 @@ async function captureDomain(browser, domain, timeZone) {
         http_fallback_used: i === 1,
         screenshots: {
           desktop_viewport: desktop.viewportScreenshot,
-          desktop_full: desktop.fullScreenshot,
           mobile_viewport: mobile.viewportScreenshot,
-          mobile_full: mobile.fullScreenshot,
         },
       };
     } catch (error) {
@@ -161,30 +157,27 @@ async function captureDomain(browser, domain, timeZone) {
     http_fallback_used: false,
     screenshots: {
       desktop_viewport: null,
-      desktop_full: null,
       mobile_viewport: null,
-      mobile_full: null,
     },
   };
 }
 
-function drawScreenshotCard(doc, title, imageBuffer, x, y, width, height) {
+function drawScreenshot(doc, title, imageBuffer, x, y, width, height) {
   doc.save();
-  doc.rect(x, y, width, height).strokeColor("#d0d7de").lineWidth(1).stroke();
-  doc.font("Helvetica-Bold").fontSize(10).fillColor("#111827").text(title, x + 8, y + 8, { width: width - 16 });
+  doc.font("Helvetica-Bold").fontSize(10).fillColor("#111827").text(title, x, y, { width: width });
 
-  const imageY = y + 28;
-  const imageHeight = height - 36;
+  const imageY = y + 16;
+  const imageHeight = height - 20;
 
   if (imageBuffer) {
-    doc.image(imageBuffer, x + 8, imageY, {
-      fit: [width - 16, imageHeight - 8],
+    doc.image(imageBuffer, x, imageY, {
+      fit: [width, imageHeight],
       align: "center",
       valign: "center",
     });
   } else {
-    doc.font("Helvetica").fontSize(9).fillColor("#6b7280").text("Скриншот недоступен", x + 8, imageY + 8, {
-      width: width - 16,
+    doc.font("Helvetica").fontSize(9).fillColor("#6b7280").text("Screenshot unavailable", x, imageY + 8, {
+      width: width,
       align: "center",
     });
   }
@@ -210,7 +203,7 @@ function createPdfBuffer(domainResults) {
 
       if (result.status === "ERROR") {
         doc.font("Helvetica").fontSize(11).fillColor("#991b1b").text(
-          `Pricing page не найдена или недоступна. Причина: ${result.error_code || "UNKNOWN"}`,
+          `Pricing page not found or unavailable. Reason: ${result.error_code || "UNKNOWN"}`,
           24,
           118,
           { width: 540 }
@@ -221,31 +214,13 @@ function createPdfBuffer(domainResults) {
         continue;
       }
 
-      const gridTop = 118;
-      const cardW = 260;
-      const cardH = 300;
-      const gap = 18;
+      const contentTop = 118;
+      const contentWidth = 540;
+      const screenshotHeight = 330;
+      const gap = 20;
 
-      drawScreenshotCard(doc, "Desktop viewport", result.screenshots.desktop_viewport, 24, gridTop, cardW, cardH);
-      drawScreenshotCard(doc, "Mobile viewport", result.screenshots.mobile_viewport, 24 + cardW + gap, gridTop, cardW, cardH);
-      drawScreenshotCard(
-        doc,
-        "Desktop full-page",
-        result.screenshots.desktop_full,
-        24,
-        gridTop + cardH + 14,
-        cardW,
-        cardH
-      );
-      drawScreenshotCard(
-        doc,
-        "Mobile full-page",
-        result.screenshots.mobile_full,
-        24 + cardW + gap,
-        gridTop + cardH + 14,
-        cardW,
-        cardH
-      );
+      drawScreenshot(doc, "Desktop", result.screenshots.desktop_viewport, 24, contentTop, contentWidth, screenshotHeight);
+      drawScreenshot(doc, "Mobile", result.screenshots.mobile_viewport, 24, contentTop + screenshotHeight + gap, contentWidth, screenshotHeight);
 
       doc.font("Helvetica").fontSize(8).fillColor("#6b7280").text(
         `HTTP fallback used: ${result.http_fallback_used ? "yes" : "no"}`,
